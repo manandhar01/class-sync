@@ -26,16 +26,16 @@ npm install -g sync-classes
 Call the tool and get a help on the options:
 
 ```bash
-✗ taskforce --help
+✗ sync-classes --help
 
-  Usage: taskforce [options]
+  Usage: sync-classes [options]
 
 
   Options:
 
     -V, --version               output the version number
     -n, --name [name]           connection name [My Connection] (default: "My Connection")
-    -f, --file [file]          class file
+    -f, --file [file]           class file
     -h, --help                  output usage information
 ```
 
