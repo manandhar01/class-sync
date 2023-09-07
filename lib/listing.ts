@@ -11,7 +11,6 @@ console.log(entity)
 console.log(dir)
 
 // convert the given inputs to required converted variables
-const timestamp = Date.now()
 const file = entity
   .replace(/[A-Z]/g, (match) => `.${match}`)
   .replace(/^./g, '')

@@ -11,7 +11,7 @@ let listing: string = readlineSync.question('Should enable listing [Y/n] : ')
 let controller: string = readlineSync.question('Create controller [Y/n] : ')
 
 // convert the given inputs to required converted variables
-const table = tab.replace('dz_', 'sys_')
+const table = tab.replace(/dz_/g, 'sys_')
 const timestamp = Date.now()
 const file = entity
   .replace(/[A-Z]/g, (match) => `.${match}`)
