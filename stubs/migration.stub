@@ -1,0 +1,15 @@
+import { MigrationUtility } from '@servicelabsco/nestjs-utility-services';
+
+export class #migrationclass# extends MigrationUtility {
+    constructor() {
+        super('#table#');
+        this.process();
+    }
+
+    process() {
+		this.primary();
+		
+    this.json('attributes');
+		this.whoColumns();      
+    }
+}

@@ -1,5 +1,6 @@
 import * as readlineSync from 'readline-sync'
 import * as fs from 'fs'
+import * as path from 'path'
 import { exec } from 'child_process'
 
 const getFileName = (table: string): string => {
@@ -21,8 +22,7 @@ const writeMigrationFile = (tableName: string, iFileName: string) => {
 
   const migrationFile = `${cwd}/src/migrations/${mFileName}`
   fs.copyFileSync(
-    process.env.HOME +
-      '/sites/personal/custom-personal-scripts/nestjs/migration.stub',
+    path.normalize(`${__dirname}/../stubs/migration.stub`),
     migrationFile
   )
   let data: string = fs.readFileSync(migrationFile, { encoding: 'utf8' })

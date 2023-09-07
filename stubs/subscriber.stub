@@ -1,0 +1,21 @@
+import { CommonSubscriber } from '@servicelabsco/nestjs-utility-services';
+import { DataSource, EventSubscriber, InsertEvent, UpdateEvent } from 'typeorm';
+import { #entity#Entity } from '../entities/#file#.entity';
+import { #entity#Job } from '../jobs/#file#.job';
+@EventSubscriber()
+export class #entity#Subscriber extends CommonSubscriber<#entity#Entity> {
+    constructor(private readonly dataSource: DataSource, private readonly #sfile#Job: #entity#Job) {
+        super();
+        dataSource.subscribers.push(this);
+    }
+    listenTo() {
+        return #entity#Entity;
+    }
+    async afterInsert(event: InsertEvent<#entity#Entity>) {
+        await this.#sfile#Job.delayedDispatch(this.getEventData(event));
+    }
+
+    async afterUpdate(event: UpdateEvent<#entity#Entity>) {
+        await this.#sfile#Job.delayedDispatch(this.getEventData(event));
+    }
+}

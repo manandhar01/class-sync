@@ -1,0 +1,26 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CommonService } from '@servicelabsco/nestjs-utility-services';
+import { #entity# } from '../entities';
+import { Repository } from 'typeorm';
+
+/**
+ * Service on top of #entity# entity
+ * @export
+ * @class #entity#Service
+ * @extends {BaseService<#entity#>}
+ */
+@Injectable()
+export class #entity#Service extends CommonService<#entity#> {
+  /**
+   * Creates an instance of #entity#Service.
+   * @param {Repository<#entity#>} r
+   * @memberof #entity#Service
+   */
+  constructor(
+    @InjectRepository(#entity#)
+    private readonly r: Repository<#entity#>,
+  ) {
+    super(r);
+  }
+}

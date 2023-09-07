@@ -1,0 +1,14 @@
+import { Injectable } from '@nestjs/common';
+import { CommonJob, DatabaseEventDto, QueueService } from '@servicelabsco/nestjs-utility-services';
+import { #entity#Entity } from '../entities/#file#.entity';
+@Injectable()
+export class #entity#Job extends CommonJob {
+    constructor(
+        protected readonly queueService: QueueService,
+    ) {
+        super();
+    }
+    async handle(evt: DatabaseEventDto<#entity#Entity>) {
+        return evt.entity;
+    }
+}

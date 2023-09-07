@@ -1,5 +1,6 @@
 import * as readlineSync from 'readline-sync'
 import * as fs from 'fs'
+import * as path from 'path'
 import { exec } from 'child_process'
 
 const cwd = process.cwd()
@@ -40,11 +41,7 @@ for (const dirName of dirNames) {
 
 // process the entity stuff
 const entityFile = `${cwd}/src/${dir}/entities/${file}.entity.ts`
-fs.copyFileSync(
-  process.env.HOME +
-    '/sites/personal/custom-personal-scripts/nestjs/entity.stub',
-  entityFile
-)
+fs.copyFileSync(path.normalize(`${__dirname}/../stubs/entity.stub`), entityFile)
 let data: string = fs.readFileSync(entityFile, { encoding: 'utf8' })
 data = data
   .replace(/#table#/g, table)
@@ -60,8 +57,7 @@ const migrationFileName = `${timestamp}-Create${entity}Table.ts`
 const migrationClassName = `Create${entity}Table${timestamp}`
 const migrationFile = `${cwd}/src/migrations/${migrationFileName}`
 fs.copyFileSync(
-  process.env.HOME +
-    '/sites/personal/custom-personal-scripts/nestjs/migration.stub',
+  path.normalize(`${__dirname}/../stubs/migration.stub`),
   migrationFile
 )
 data = fs.readFileSync(migrationFile, { encoding: 'utf8' })
@@ -75,10 +71,7 @@ console.log(`migration file : ${migrationFileName}`)
 
 // process the job stuff
 const jobFile = `${cwd}/src/${dir}/jobs/${file}.job.ts`
-fs.copyFileSync(
-  process.env.HOME + '/sites/personal/custom-personal-scripts/nestjs/job.stub',
-  jobFile
-)
+fs.copyFileSync(path.normalize(`${__dirname}/../stubs/job.stub`), jobFile)
 data = fs.readFileSync(jobFile, { encoding: 'utf8' })
 data = data.replace(/#entity#/g, entity).replace(/#file#/g, file)
 fs.writeFileSync(jobFile, data)
@@ -86,8 +79,7 @@ fs.writeFileSync(jobFile, data)
 // process subscriber stuff
 const subscriberFile = `${cwd}/src/${dir}/subscribers/${file}.subscriber.ts`
 fs.copyFileSync(
-  process.env.HOME +
-    '/sites/personal/custom-personal-scripts/nestjs/subscriber.stub',
+  path.normalize(`${__dirname}/../stubs/subscriber.stub`),
   subscriberFile
 )
 data = fs.readFileSync(subscriberFile, { encoding: 'utf8' })
@@ -100,8 +92,7 @@ fs.writeFileSync(subscriberFile, data)
 // process the dto attributes stuff
 const dtoFile = `${cwd}/src/${dir}/dtos/${file}.attributes.dto.ts`
 fs.copyFileSync(
-  process.env.HOME +
-    '/sites/personal/custom-personal-scripts/nestjs/dto_attribute.stub',
+  path.normalize(`${__dirname}/../stubs/dto_attribute.stub`),
   dtoFile
 )
 data = fs.readFileSync(dtoFile, { encoding: 'utf8' })
@@ -113,8 +104,7 @@ if (listing === 'y' || listing === 'Y') {
   // process the dto stuff
   const dtoListingFile = `${cwd}/src/${dir}/dtos/${file}.list.filter.dto.ts`
   fs.copyFileSync(
-    process.env.HOME +
-      '/sites/personal/custom-personal-scripts/nestjs/listing.dto.stub',
+    path.normalize(`${__dirname}/../stubs/listing.dto.stub`),
     dtoListingFile
   )
   data = fs.readFileSync(dtoListingFile, { encoding: 'utf8' })
@@ -125,8 +115,7 @@ if (listing === 'y' || listing === 'Y') {
   // process the processing listing stuff
   const listFile = `${cwd}/src/${dir}/libraries/${file}.list.ts`
   fs.copyFileSync(
-    process.env.HOME +
-      '/sites/personal/custom-personal-scripts/nestjs/process.list.stub',
+    path.normalize(`${__dirname}/../stubs/process.list.stub`),
     listFile
   )
   data = fs.readFileSync(listFile, { encoding: 'utf8' })
@@ -144,8 +133,7 @@ if (controller === 'y' || controller === 'Y') {
   // process the controller stuff
   const controllerFile = `${cwd}/src/${dir}/controllers/${file}.controller.ts`
   fs.copyFileSync(
-    process.env.HOME +
-      '/sites/personal/custom-personal-scripts/nestjs/controller.stub',
+    path.normalize(`${__dirname}/../stubs/controller.stub`),
     controllerFile
   )
   data = fs.readFileSync(controllerFile, { encoding: 'utf8' })

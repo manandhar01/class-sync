@@ -1,0 +1,12 @@
+import { SeederUtility } from '@servicelabsco/nestjs-utility-services';
+
+export class #migrationclass# extends SeederUtility {
+    constructor() {
+        super('#table#');
+        this.process();
+    }
+
+    process() {
+
+    }
+}

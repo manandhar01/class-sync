@@ -1,0 +1,67 @@
+/**
+ * get all filtered #entity#
+ * @export
+ * @class Process#entity#List
+ */
+export class Process#entity#List extends ProcessCommonFinnotoList {
+    /**
+     * the filter conditions setup by the end user
+     * @protected
+     * @type {#entity#ListFilterDto}
+     * @memberof Process#entity#List
+     */
+    protected filter: #entity#ListFilterDto;
+
+    protected config = {
+        sql: ``,
+        order: 'sq.name asc',
+        columns: ['a.*'],
+        metrics: [],
+    };
+
+    /**
+     * Creates an instance of Process#entity#List.
+     * @param {SqlService} sqlService
+     * @param {BusinessEntity} business
+     * @memberof Process#entity#List
+     */
+    constructor(protected readonly sqlService: SqlService, protected readonly business: BusinessEntity) {
+        super();
+    }
+
+    /**
+     * entry point for the processing of list records
+     * @param {#entity#ListFilterDto} filter
+     * @return {*}  {Promise<ListResponseDto>}
+     * @memberof Process#entity#List
+     */
+    async process(filter: #entity#ListFilterDto): Promise<ListResponseDto> {
+        this.filter = filter;
+        this.processFilters();
+
+        return this.handle();
+    }
+
+    /**
+     * process all filter conditions passed on by the user search
+     * @private
+     * @memberof Process#entity#List
+     */
+    private processFilters() {
+		this.restrictions.push(`a.business_id = ${this.business.id}`);
+        this.search();
+    }
+
+    /**
+     * process the search filter
+     * @private
+     * @return {*}
+     * @memberof Process#entity#List
+     */
+    private search() {
+        if (!this.filter.search) return;
+        const str = this.filter.search;
+
+        this.restrictions.push(`a.name ilike '%${str}%'`);
+    }
+}

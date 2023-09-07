@@ -1,0 +1,44 @@
+/**
+ * create controller for #entity#
+ * @export
+ * @class #entity#Controller
+ */
+@Controller()
+export class #entity#Controller {
+    constructor(private readonly businessAccessService: BusinessAccessService, private readonly sqlService: SqlService) {}
+
+    @Post('search')
+    async search(@Body() body: #entity#ListFilterDto) {
+        const business = await this.businessAccessService.validateAccess();
+
+        return new Process#entity#List(this.sqlService, business).process(body);
+    }
+
+    @Post('find')
+    async find(@Body() body: StringSearchDto) {
+        const business = await this.businessAccessService.validateAccess();
+
+        const str = body.str;
+        const limit = body.limit || 10;
+
+        let sql = `select * from #table# a where a.deleted_at is null and a.business_id = ${business.id}`;
+
+        if (str) {
+            sql = `${sql} and (a.name ilike '%${str}%')`;
+        }
+
+        return this.sqlService.sql(`${sql} order by name asc limit ${limit}`);
+    }
+
+    @Get(':id')
+    async show(@Param() params: BusinessParamDto) {
+        const business = await this.businessAccessService.validateAccess();
+
+        return #entity#Entity.findOne({ where: { id: params.id, business_id: business.id } });
+    }
+
+    @Post()
+    async create() {
+        const business = await this.businessAccessService.validateAccess();
+    }
+}

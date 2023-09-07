@@ -1,0 +1,19 @@
+import { Column, Entity } from 'typeorm';
+import { CommonEntity } from '@servicelabsco/nestjs-utility-services';
+import { #entity#AttributesDto } from '../dtos/#file#.attributes.dto';
+
+/**
+ * entity definition against the #table# table
+ * @export
+ * @class #entity#Entity
+ * @extends {CommonEntity}
+ */
+@Entity('#table#')
+export class #entity#Entity extends CommonEntity {
+	@Column()
+
+	@Column('json')
+	attributes: #entity#AttributesDto;
+
+    /** all related methods to go below this */
+}
