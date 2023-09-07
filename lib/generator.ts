@@ -1,6 +1,6 @@
-const readlineSync = require('readline-sync')
-const fs = require('fs')
-const { exec } = require('child_process')
+import * as readlineSync from 'readline-sync'
+import * as fs from 'fs'
+import { exec } from 'child_process'
 
 // get inputs from the user against the required stuffs
 const entity: string = readlineSync.question('Name of the Entity : ')
