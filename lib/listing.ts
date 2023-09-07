@@ -2,6 +2,7 @@ import * as readlineSync from 'readline-sync'
 import * as fs from 'fs'
 import { exec } from 'child_process'
 
+const cwd = process.cwd()
 // get inputs from the user against the required stuffs
 const entity: string = readlineSync.question('Name of the Entity : ')
 const dir: string = readlineSync.question('Name of the module : ')
@@ -21,12 +22,12 @@ const sfile = entity.charAt(0).toLowerCase() + entity.slice(1)
 const dirNames = ['dtos', 'libraries']
 
 for (const dirName of dirNames) {
-  const dirToMake = `src/${dir}/${dirName}`
+  const dirToMake = `${cwd}/src/${dir}/${dirName}`
   if (!fs.existsSync(dirToMake)) fs.mkdirSync(dirToMake, { recursive: true })
 }
 
 // process the dto stuff
-const dtoFile = `./src/${dir}/dtos/${file}.list.filter.dto.ts`
+const dtoFile = `${cwd}/src/${dir}/dtos/${file}.list.filter.dto.ts`
 fs.copyFileSync(
   process.env.HOME +
     '/sites/personal/custom-personal-scripts/nestjs/listing.dto.stub',
@@ -38,7 +39,7 @@ fs.writeFileSync(dtoFile, data)
 console.log(`dto file : ${file}.list.filter.dto.ts`)
 
 // process the processing listing stuff
-const processFile = `./src/${dir}/libraries/process.${file}.list.ts`
+const processFile = `${cwd}/src/${dir}/libraries/process.${file}.list.ts`
 fs.copyFileSync(
   process.env.HOME +
     '/sites/personal/custom-personal-scripts/nestjs/process.list.stub',

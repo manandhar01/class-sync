@@ -2,6 +2,7 @@ import * as readlineSync from 'readline-sync'
 import * as fs from 'fs'
 import { exec } from 'child_process'
 
+const cwd = process.cwd()
 // get inputs from the user against the required stuffs
 const entity: string = readlineSync.question('Name of the Entity : ')
 const tab: string = readlineSync.question('Name of the table : ')
@@ -33,12 +34,12 @@ const dirNames = [
 ]
 
 for (const dirName of dirNames) {
-  const dirToMake = `src/${dir}/${dirName}`
+  const dirToMake = `${cwd}/src/${dir}/${dirName}`
   if (!fs.existsSync(dirToMake)) fs.mkdirSync(dirToMake, { recursive: true })
 }
 
 // process the entity stuff
-const entityFile = `./src/${dir}/entities/${file}.entity.ts`
+const entityFile = `${cwd}/src/${dir}/entities/${file}.entity.ts`
 fs.copyFileSync(
   process.env.HOME +
     '/sites/personal/custom-personal-scripts/nestjs/entity.stub',
@@ -57,7 +58,7 @@ console.log(`entity file : ${file}.entity.ts`)
 // creating the migration file
 const migrationFileName = `${timestamp}-Create${entity}Table.ts`
 const migrationClassName = `Create${entity}Table${timestamp}`
-const migrationFile = `./src/migrations/${migrationFileName}`
+const migrationFile = `${cwd}/src/migrations/${migrationFileName}`
 fs.copyFileSync(
   process.env.HOME +
     '/sites/personal/custom-personal-scripts/nestjs/migration.stub',
@@ -73,7 +74,7 @@ exec(`code -r ${migrationFile}`)
 console.log(`migration file : ${migrationFileName}`)
 
 // process the job stuff
-const jobFile = `./src/${dir}/jobs/${file}.job.ts`
+const jobFile = `${cwd}/src/${dir}/jobs/${file}.job.ts`
 fs.copyFileSync(
   process.env.HOME + '/sites/personal/custom-personal-scripts/nestjs/job.stub',
   jobFile
@@ -83,7 +84,7 @@ data = data.replace(/#entity#/g, entity).replace(/#file#/g, file)
 fs.writeFileSync(jobFile, data)
 
 // process subscriber stuff
-const subscriberFile = `./src/${dir}/subscribers/${file}.subscriber.ts`
+const subscriberFile = `${cwd}/src/${dir}/subscribers/${file}.subscriber.ts`
 fs.copyFileSync(
   process.env.HOME +
     '/sites/personal/custom-personal-scripts/nestjs/subscriber.stub',
@@ -97,7 +98,7 @@ data = data
 fs.writeFileSync(subscriberFile, data)
 
 // process the dto attributes stuff
-const dtoFile = `./src/${dir}/dtos/${file}.attributes.dto.ts`
+const dtoFile = `${cwd}/src/${dir}/dtos/${file}.attributes.dto.ts`
 fs.copyFileSync(
   process.env.HOME +
     '/sites/personal/custom-personal-scripts/nestjs/dto_attribute.stub',
@@ -110,7 +111,7 @@ fs.writeFileSync(dtoFile, data)
 // process the generic listing one
 if (listing === 'y' || listing === 'Y') {
   // process the dto stuff
-  const dtoListingFile = `./src/${dir}/dtos/${file}.list.filter.dto.ts`
+  const dtoListingFile = `${cwd}/src/${dir}/dtos/${file}.list.filter.dto.ts`
   fs.copyFileSync(
     process.env.HOME +
       '/sites/personal/custom-personal-scripts/nestjs/listing.dto.stub',
@@ -122,7 +123,7 @@ if (listing === 'y' || listing === 'Y') {
   console.log(`dto file : ${file}.list.filter.dto.ts`)
 
   // process the processing listing stuff
-  const listFile = `./src/${dir}/libraries/${file}.list.ts`
+  const listFile = `${cwd}/src/${dir}/libraries/${file}.list.ts`
   fs.copyFileSync(
     process.env.HOME +
       '/sites/personal/custom-personal-scripts/nestjs/process.list.stub',
@@ -141,7 +142,7 @@ if (listing === 'y' || listing === 'Y') {
 // process the controller
 if (controller === 'y' || controller === 'Y') {
   // process the controller stuff
-  const controllerFile = `./src/${dir}/controllers/${file}.controller.ts`
+  const controllerFile = `${cwd}/src/${dir}/controllers/${file}.controller.ts`
   fs.copyFileSync(
     process.env.HOME +
       '/sites/personal/custom-personal-scripts/nestjs/controller.stub',
