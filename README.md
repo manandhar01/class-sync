@@ -1,8 +1,8 @@
-# Sync Classes Connector
+# @manandharbibek/cli-tool
 
 ## Install
 
-# Local
+### Local
 
 ```bash
 sudo npm install -g .
@@ -11,14 +11,13 @@ sudo npm install -g .
 Using [yarn](https://yarnpkg.com)
 
 ```bash
-yarn global add sync-classes
-
+yarn global add @manandharbibek/cli-tool
 ```
 
 Using npm:
 
 ```bash
-npm install -g sync-classes
+npm install -g @manandharbibek/cli-tool
 ```
 
 ## Usage
@@ -26,27 +25,26 @@ npm install -g sync-classes
 Call the tool and get a help on the options:
 
 ```bash
-✗ sync-classes --help
+✗ cli-tool --help
 
-  Usage: sync-classes [options]
+Usage: cli-tool [options] [command]
 
+CLI Tool for generating nestjs files
 
-  Options:
+Options:
+  -V, --version   output the version number
+  -h, --help      display help for command
 
-    -V, --version               output the version number
-    -n, --name [name]           connection name [My Connection] (default: "My Connection")
-    -f, --file [file]           class file
-    -h, --help                  output usage information
+Commands:
+  generator       Run generator script
+  listing         Run listing script
+  migrator        Run migrator script
+  seeder          Run seeder script
+  help [command]  display help for command
 ```
 
 Example:
 
 ```bash
-✗ sync-class -n "Demo Class" -f DemoClass.ts
-```
-
-Note: You can also specify the following with environment variables.
-
-```bash
-file      FILE
+✗ cli-tool generator
 ```
