@@ -21,6 +21,10 @@ const writeMigrationFile = (tableName: string, iFileName: string) => {
   const className = `${fileName}Table${ts}`
 
   const migrationFile = `${cwd}/src/migrations/${mFileName}`
+
+  if (!fs.existsSync(`${cwd}/src/migrations`))
+    fs.mkdirSync(`${cwd}/src/migrations`)
+
   fs.copyFileSync(
     path.normalize(`${__dirname}/../stubs/migration.stub`),
     migrationFile

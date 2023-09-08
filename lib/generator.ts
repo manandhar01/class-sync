@@ -39,6 +39,9 @@ for (const dirName of dirNames) {
   if (!fs.existsSync(dirToMake)) fs.mkdirSync(dirToMake, { recursive: true })
 }
 
+if (!fs.existsSync(`${cwd}/src/migrations`))
+  fs.mkdirSync(`${cwd}/src/migrations`)
+
 // process the entity stuff
 const entityFile = `${cwd}/src/${dir}/entities/${file}.entity.ts`
 fs.copyFileSync(path.normalize(`${__dirname}/../stubs/entity.stub`), entityFile)
@@ -51,6 +54,9 @@ fs.writeFileSync(entityFile, data)
 
 exec(`code -r ${entityFile}`)
 console.log(`entity file : ${file}.entity.ts`)
+
+if (!fs.existsSync(`${cwd}/src/migrations`))
+  fs.mkdirSync(`${cwd}/src/migrations`)
 
 // creating the migration file
 const migrationFileName = `${timestamp}-Create${entity}Table.ts`
