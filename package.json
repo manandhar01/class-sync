@@ -1,80 +1,45 @@
 {
-    "name": "sync-classes",
-    "version": "0.0.1",
-    "preferGlobal": true,
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "source": "lib/index.ts",
-    "bin": {
-        "sync-classes": "index.js"
-    },
-    "files": [
-        "dist"
-    ],
-    "dependencies": {
-        "@types/readline-sync": "^1.4.4",
-        "bull": "^4.8.1",
-        "chalk": "^4.1.0",
-        "commander": "^5.1.0",
-        "ioredis": "^4.27.6",
-        "latest-version": "^5.1.0",
-        "lodash": "^4.17.21",
-        "readline-sync": "^1.4.10",
-        "semver": "^7.3.2",
-        "ws": "^8.6.0"
-    },
-    "devDependencies": {
-        "@semantic-release/changelog": "^5.0.1",
-        "@semantic-release/commit-analyzer": "^8.0.1",
-        "@semantic-release/git": "^9.0.0",
-        "@semantic-release/github": "^7.2.1",
-        "@semantic-release/npm": "^7.1.1",
-        "@semantic-release/release-notes-generator": "^9.0.2",
-        "@types/bull": "^3.15.8",
-        "@types/chalk": "^2.2.0",
-        "@types/lodash": "^4.14.149",
-        "@types/ws": "^6.0.1",
-        "typescript": "^4.2.3"
-    },
-    "scripts": {
-        "build": "tsc",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "./index.js",
-        "prepare": "yarn build"
-    },
-    "author": "Rumesh Udash",
-    "license": "MIT",
-    "release": {
-        "branches": [
-            "master"
-        ],
-        "plugins": [
-            "@semantic-release/commit-analyzer",
-            "@semantic-release/release-notes-generator",
-            [
-                "@semantic-release/changelog",
-                {
-                    "changelogFile": "CHANGELOG.md"
-                }
-            ],
-            [
-                "@semantic-release/npm",
-                {
-                    "npmPublish": true
-                }
-            ],
-            "@semantic-release/github",
-            [
-                "@semantic-release/git",
-                {
-                    "assets": [
-                        "package.json",
-                        "yarn.lock",
-                        "CHANGELOG.md"
-                    ],
-                    "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-                }
-            ]
-        ]
-    }
+  "name": "sync-classes",
+  "version": "0.0.1",
+  "preferGlobal": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "source": "lib/index.ts",
+  "bin": {
+    "sync-classes": "index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "commander": "^5.1.0",
+    "latest-version": "^5.1.0",
+    "readline-sync": "^1.4.10",
+    "semver": "^7.3.2",
+    "ws": "^8.6.0"
+  },
+  "devDependencies": {
+    "@types/readline-sync": "^1.4.4",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.2.1",
+    "@semantic-release/npm": "^7.1.1",
+    "@semantic-release/release-notes-generator": "^9.0.2",
+    "@types/ws": "^6.0.1",
+    "typescript": "^4.2.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./index.js",
+    "prepare": "yarn build"
+  },
+  "author": "Rumesh Udash",
+  "license": "MIT",
+  "release": {
+    "branches": [
+      "master"
+    ]
+  }
 }
