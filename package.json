@@ -2,7 +2,7 @@
   "name": "@manandharbibek/cli-tool",
   "main": "dist/index.ts",
   "types": "dist/index.d.ts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "bin": {
     "cli-tool": "./bin/cli-tool.js"
   },
@@ -19,7 +19,8 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "yarn build",
-    "prepublish": "tsc"
+    "prepublish": "tsc",
+    "postinstall": "tsc"
   },
   "author": "Bibek Manandhar",
   "license": "MIT"
