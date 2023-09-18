@@ -1,0 +1,7 @@
+#CLASS_IMPORT#
+
+const es6Classes = {
+    #CLASS_MAPS#
+};
+
+export default es6Classes;

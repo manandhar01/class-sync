@@ -1,0 +1,7 @@
+#CLASS_IMPORT#
+
+const entityConstants = {
+    #MD5_ENTITIES#
+};
+
+export = entityConstants;

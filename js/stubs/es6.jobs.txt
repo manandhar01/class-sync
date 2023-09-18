@@ -1,0 +1,38 @@
+import { Injectable } from '@nestjs/common';
+#CLASS_IMPORT#
+#PROPERTY_SERVICE_PATH#
+
+/**
+ * this would get all the jobs which is part of the given module
+ * @export
+ * @class Es6JobsService
+ */
+@Injectable()
+export class Es6JobsService {
+    private jobs = {};
+
+    constructor(
+        #CONSTRUCTOR_IMPORT#
+    ) {
+        this.alignJobs();
+        this.setJobs();
+    }
+
+    /**
+     * this would assign all the jobs which is defined
+     * @memberof Es6JobsService
+     */
+    alignJobs() {
+        this.jobs = {
+			#MD5_JOBS#
+        };
+    }
+
+    /**
+     * assign the jobs service to the local property
+     * @memberof Es6JobsService
+     */
+    setJobs() {
+        PlatformUtility.setJobs(this.jobs);
+    }
+}

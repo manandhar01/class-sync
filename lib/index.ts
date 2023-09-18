@@ -71,8 +71,52 @@ program
     )
   })
 
-if (!process.argv.slice(2).length) {
-  program.outputHelp()
-}
+program
+  .command('syncClasses')
+  .description('Run syncClasses script')
+  .action(() => {
+    exec(
+      `node ${path.join(scriptDirectory, 'syncClasses.js')}`,
+      (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error executing syncClasses: ${error.message}`)
+          process.exit(1)
+        }
+        console.log(stdout)
+      }
+    )
+  })
+
+program
+  .command('syncIndex')
+  .description('Run syncIndex script')
+  .action(() => {
+    exec(
+      `node ${path.join(scriptDirectory, 'syncIndex.js')}`,
+      (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error executing syncIndex: ${error.message}`)
+          process.exit(1)
+        }
+        console.log(stdout)
+      }
+    )
+  })
+
+program
+  .command('commit')
+  .description('Run commit script')
+  .action(() => {
+    exec(
+      `node ${path.join(scriptDirectory, 'commit.js')}`,
+      (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error executing commit: ${error.message}`)
+          process.exit(1)
+        }
+        console.log(stdout)
+      }
+    )
+  })
 
 program.parse()
